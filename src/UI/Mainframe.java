@@ -4,6 +4,8 @@
  */
 package UI;
 
+import java.awt.CardLayout;
+
 /**
  *
  * @author thamashikumarasinghe
@@ -28,36 +30,52 @@ public class Mainframe extends javax.swing.JFrame {
 
         splitPane = new javax.swing.JSplitPane();
         buttonPanel = new javax.swing.JPanel();
+        registrationBtn = new javax.swing.JButton();
+        viewBtn = new javax.swing.JButton();
         viewPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         splitPane.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 
+        registrationBtn.setText("Registration");
+        registrationBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registrationBtnActionPerformed(evt);
+            }
+        });
+
+        viewBtn.setText("View Details");
+        viewBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout buttonPanelLayout = new javax.swing.GroupLayout(buttonPanel);
         buttonPanel.setLayout(buttonPanelLayout);
         buttonPanelLayout.setHorizontalGroup(
             buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
+            .addGroup(buttonPanelLayout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addComponent(registrationBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 375, Short.MAX_VALUE)
+                .addComponent(viewBtn)
+                .addGap(149, 149, 149))
         );
         buttonPanelLayout.setVerticalGroup(
             buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, buttonPanelLayout.createSequentialGroup()
+                .addContainerGap(50, Short.MAX_VALUE)
+                .addGroup(buttonPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(registrationBtn)
+                    .addComponent(viewBtn))
+                .addGap(27, 27, 27))
         );
 
         splitPane.setTopComponent(buttonPanel);
 
-        javax.swing.GroupLayout viewPanelLayout = new javax.swing.GroupLayout(viewPanel);
-        viewPanel.setLayout(viewPanelLayout);
-        viewPanelLayout.setHorizontalGroup(
-            viewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
-        );
-        viewPanelLayout.setVerticalGroup(
-            viewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 395, Short.MAX_VALUE)
-        );
-
+        viewPanel.setLayout(new java.awt.CardLayout());
         splitPane.setRightComponent(viewPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -68,11 +86,32 @@ public class Mainframe extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(splitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addComponent(splitPane)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void registrationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrationBtnActionPerformed
+        // TODO add your handling code here:
+        Form formPanel = new Form(viewPanel);
+        viewPanel.add(formPanel);
+        CardLayout layout = (CardLayout) viewPanel.getLayout();
+        layout.next(viewPanel);
+//        splitPane.setBottomComponent(formPanel);
+    }//GEN-LAST:event_registrationBtnActionPerformed
+
+    private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
+        // TODO add your handling code here:
+        try {
+            ViewPanel viewPanel = new ViewPanel(null);
+            viewPanel.add(viewPanel);
+            CardLayout layout = (CardLayout) viewPanel.getLayout();
+            layout.next(viewPanel);
+        } catch (Exception e) {
+        }
+
+    }//GEN-LAST:event_viewBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -111,7 +150,9 @@ public class Mainframe extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel buttonPanel;
+    private javax.swing.JButton registrationBtn;
     private javax.swing.JSplitPane splitPane;
+    private javax.swing.JButton viewBtn;
     private javax.swing.JPanel viewPanel;
     // End of variables declaration//GEN-END:variables
 }
