@@ -27,6 +27,7 @@ public class Form extends javax.swing.JPanel {
      * Creates new form Form
      */
     private JPanel viewPanel;
+    User newUser = new User();
 
     public Form(JPanel bottomPanel) {
         initComponents();
@@ -65,11 +66,9 @@ public class Form extends javax.swing.JPanel {
         patientTypeLabel = new javax.swing.JLabel();
         patientTypeCombo = new javax.swing.JComboBox<>();
         genderLabel = new javax.swing.JLabel();
-        patientTypeValidation = new javax.swing.JLabel();
         Male = new javax.swing.JRadioButton();
         Female = new javax.swing.JRadioButton();
         notPrefered = new javax.swing.JRadioButton();
-        genderValidation = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(800, 600));
 
@@ -182,10 +181,9 @@ public class Form extends javax.swing.JPanel {
 
         genderLabel.setText("Gender");
 
-        patientTypeValidation.setForeground(new java.awt.Color(255, 0, 0));
-
         genderGroup.add(Male);
         Male.setText("Male");
+        Male.setActionCommand("MALE");
         Male.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MaleActionPerformed(evt);
@@ -194,11 +192,11 @@ public class Form extends javax.swing.JPanel {
 
         genderGroup.add(Female);
         Female.setText("Female");
+        Female.setActionCommand("FEMALE");
 
         genderGroup.add(notPrefered);
         notPrefered.setText("Prefer not to say");
-
-        genderValidation.setForeground(new java.awt.Color(255, 0, 0));
+        notPrefered.setActionCommand("NotPrefered\n");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -237,14 +235,12 @@ public class Form extends javax.swing.JPanel {
                             .addComponent(emailValidation, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(messageValidation, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(patientTypeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(patientTypeValidation, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(Male)
                                 .addGap(59, 59, 59)
                                 .addComponent(Female)
                                 .addGap(51, 51, 51)
-                                .addComponent(notPrefered))
-                            .addComponent(genderValidation, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(notPrefered)))))
                 .addGap(0, 135, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -292,24 +288,20 @@ public class Form extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(patientTypeLabel)
                     .addComponent(patientTypeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(patientTypeValidation, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16)
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(genderLabel)
                     .addComponent(Male)
                     .addComponent(Female)
                     .addComponent(notPrefered))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(genderValidation, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
+                        .addGap(44, 44, 44)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(uploadImgBtn)
                             .addComponent(imageIconLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
+                        .addGap(97, 97, 97)
                         .addComponent(submitBtn)))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
@@ -401,14 +393,17 @@ public class Form extends javax.swing.JPanel {
         // TODO add your handling code here:
 //        String firstname, lastname, age, email, message;
         try {
-            User newUser = new User();
             newUser.setFirstName(firstnameTxtField.getText());
             newUser.setLastName(lastnameTxtField.getText());
             newUser.setAge(ageTextField.getText());
             newUser.setEmail(emailTxtField.getText());
             newUser.setMessage(messageTxtField.getText());
             newUser.setPatientType(patientTypeCombo.getSelectedItem().toString());
+            Male.setActionCommand("Male");
+            Female.setActionCommand("Female");
+            notPrefered.setActionCommand("Prefer not to say");
             newUser.setGender(genderGroup.getSelection().getActionCommand());
+            System.out.println(newUser.getGender());
             Pattern pattern = Pattern.compile("^(.+)@(.+)$");
 
             // validation for submit button
@@ -471,6 +466,7 @@ public class Form extends javax.swing.JPanel {
         try {
             ImageIcon imageIcon = new ImageIcon(scaleImage(120, 120, ImageIO.read(new File(f.getAbsolutePath()))));
             imageIconLabel.setIcon(imageIcon);
+            newUser.setPic(imageIcon);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -508,7 +504,6 @@ public class Form extends javax.swing.JPanel {
     private javax.swing.JLabel firstnameValidation;
     private javax.swing.ButtonGroup genderGroup;
     private javax.swing.JLabel genderLabel;
-    private javax.swing.JLabel genderValidation;
     private javax.swing.JLabel headingLabel;
     private javax.swing.JLabel imageIconLabel;
     private javax.swing.JLabel lastnameLabel;
@@ -520,7 +515,6 @@ public class Form extends javax.swing.JPanel {
     private javax.swing.JRadioButton notPrefered;
     private javax.swing.JComboBox<String> patientTypeCombo;
     private javax.swing.JLabel patientTypeLabel;
-    private javax.swing.JLabel patientTypeValidation;
     private javax.swing.JButton submitBtn;
     private javax.swing.JButton uploadImgBtn;
     // End of variables declaration//GEN-END:variables

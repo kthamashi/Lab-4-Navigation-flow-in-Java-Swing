@@ -35,6 +35,7 @@ public class Mainframe extends javax.swing.JFrame {
         viewPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(204, 204, 255));
 
         splitPane.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
 

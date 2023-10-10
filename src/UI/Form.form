@@ -61,7 +61,6 @@
                           <Component id="emailValidation" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
                           <Component id="messageValidation" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
                           <Component id="patientTypeCombo" alignment="0" min="-2" pref="157" max="-2" attributes="0"/>
-                          <Component id="patientTypeValidation" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="Male" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
@@ -69,7 +68,6 @@
                               <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
                               <Component id="notPrefered" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="genderValidation" alignment="0" min="-2" pref="259" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -132,27 +130,23 @@
                   <Component id="patientTypeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="patientTypeCombo" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="patientTypeValidation" min="-2" pref="20" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="genderLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="Male" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="Female" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="notPrefered" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="genderValidation" min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="uploadImgBtn" min="-2" max="-2" attributes="0"/>
                           <Component id="imageIconLabel" min="-2" pref="86" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
                       <Component id="submitBtn" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -337,19 +331,13 @@
         <Property name="text" type="java.lang.String" value="Gender"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="patientTypeValidation">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="0" red="ff" type="rgb"/>
-        </Property>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JRadioButton" name="Male">
       <Properties>
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="genderGroup"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Male"/>
+        <Property name="actionCommand" type="java.lang.String" value="MALE"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MaleActionPerformed"/>
@@ -361,6 +349,7 @@
           <ComponentRef name="genderGroup"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Female"/>
+        <Property name="actionCommand" type="java.lang.String" value="FEMALE"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="notPrefered">
@@ -369,13 +358,7 @@
           <ComponentRef name="genderGroup"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Prefer not to say"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="genderValidation">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="0" red="ff" type="rgb"/>
-        </Property>
+        <Property name="actionCommand" type="java.lang.String" value="NotPrefered&#xa;"/>
       </Properties>
     </Component>
   </SubComponents>

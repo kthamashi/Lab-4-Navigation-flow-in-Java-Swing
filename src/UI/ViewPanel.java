@@ -417,8 +417,16 @@ public class ViewPanel extends javax.swing.JPanel {
         emailTxtField.setText(this.newUser.getEmail());
         messageTxtField.setText(this.newUser.getMessage());
 //        genderGroup.getSelection().setActionCommand(this.newUser.getGender());
-        patientTypeCombo.setActionCommand(this.newUser.getPatientType());
+        patientTypeCombo.setSelectedItem(this.newUser.getPatientType());
         imageIconLabel.setIcon(newUser.getPic());
+        String gender = newUser.getGender();
+        if (gender.equals("Male")) {
+            Male.setSelected(true);
+        } else if (gender.equals("Female")) {
+            Female.setSelected(true);
+        } else {
+            notPrefered.setSelected(true);
+        }
         
     }
 }
